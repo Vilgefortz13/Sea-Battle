@@ -18,6 +18,22 @@ public class Player {
         return sideY;
     }
 
+    public String createSideX() {
+        Scanner sc = new Scanner(System.in);
+        String str = "";
+        while (sc.hasNextLine()) {
+            try {
+                str = sc.next("[a-h]+");
+                break;
+            } catch (InputMismatchException e) {
+                System.out.print("Invalid value. Enter from 'a' to 'h': ");
+                sc.nextLine();
+            }
+        }
+
+        return str;
+    }
+
     public String getSideX() {
         return sideX;
     }
@@ -30,6 +46,7 @@ public class Player {
         return direction;
     }
 
+//    Checking for a number instead of a string
     private int getNum() {
         int number = 0;
         try {
@@ -41,5 +58,4 @@ public class Player {
 
         return number;
     }
-
 }
