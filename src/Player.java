@@ -23,6 +23,7 @@ public class Player {
         String str = "";
         while (sc.hasNextLine()) {
             try {
+
                 str = sc.next("[a-h]+");
                 break;
             } catch (InputMismatchException e) {
