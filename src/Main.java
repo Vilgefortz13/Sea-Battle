@@ -20,8 +20,18 @@ public class Main {
 
         printField();
 
-        ship.direction(field, 4);
-        printField();
+        for (int i = 1; i < 11; i++) {
+            if (i == 1) {
+                ship.direction(field, 4);
+            } else if (i == 2 || i == 3) {
+                ship.direction(field, 3);
+            } else if (i <= 6) {
+                ship.direction(field, 2);
+            } else {
+                ship.direction(field, 1);
+            }
+            printField();
+        }
     }
 
     public static void printField() {
@@ -36,6 +46,7 @@ public class Main {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
 }

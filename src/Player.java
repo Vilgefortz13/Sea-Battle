@@ -61,8 +61,10 @@ public class Player {
     }
 
     public String[][] direction(String[][] arr, int shipLength) {
-        Player giveTryString = new Player();
         Scanner sc = new Scanner(System.in);
+
+        int sideX = createSideX();
+        int sideY = createSideY();
 
         System.out.print("""
                 Enter the direction of the ship
@@ -71,43 +73,40 @@ public class Player {
                   right - d;
                   left - a;
                   :  \040""");
-        String action = giveTryString.tryString(sc, "[a-zA-Z]+");
-
-        int sideX = createSideX();
-        int sideY = createSideY();
+        String action = tryString(sc, "[a-zA-Z]+");
 
         while (true) {
             switch (action) {
                 case "w":
                     for (int i = 0; i < shipLength; i++) {
                         arr[sideX][sideY] = "*";
-                        sideX++;
+                        sideX--;
                     }
                     return arr;
 
                 case "s":
                     for (int i = 0; i < shipLength; i++) {
                         arr[sideX][sideY] = "*";
-                        sideX--;
+                        sideX++;
                     }
                     return arr;
 
                 case "d":
                     for (int i = 0; i < shipLength; i++) {
                         arr[sideX][sideY] = "*";
-                        sideY++;
+                        sideY--;
                     }
                     return arr;
 
                 case "a":
                     for (int i = 0; i < shipLength; i++) {
                         arr[sideX][sideY] = "*";
-                        sideY--;
+                        sideY++;
                     }
                     return arr;
 
                 default:
-                    System.out.println();
+                    System.out.println("Invalid direction.");
                     return null;
             }
         }
