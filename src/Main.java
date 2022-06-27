@@ -1,15 +1,11 @@
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class Main {
-
-    static String[][] field = new String[9][9];
 
     public static void main(String[] args) {
         run();
     }
 
     private static void run() {
+        String[][] field = new String[9][9];
         Player ship = new Player();
 
         for (int i = 0; i < field.length; i++) {
@@ -18,7 +14,7 @@ public class Main {
             }
         }
 
-        printField();
+        printField(field);
 
         for (int i = 1; i < 11; i++) {
             if (i == 1) {
@@ -30,11 +26,11 @@ public class Main {
             } else {
                 ship.direction(field, 1);
             }
-            printField();
+            printField(field);
         }
     }
 
-    public static void printField() {
+    public static void printField(String[][] field) {
         int verticalCoordinates = 1;
 
         System.out.println("\tA   B   C   D   E   F   G   H   I");
@@ -47,6 +43,8 @@ public class Main {
             System.out.println();
         }
         System.out.println();
+
+        verticalCoordinates = 1;
     }
 
 }

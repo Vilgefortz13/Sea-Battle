@@ -10,7 +10,7 @@ public class Player {
     public int createSideX() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Select horizontal line coordinate: ");
-        String direction = tryString(sc, "[a-h]+").toLowerCase();
+        String direction = tryString(sc, "[a-i]+").toLowerCase();
 
         switch (direction) {
             case "a":
@@ -75,39 +75,39 @@ public class Player {
                   :  \040""");
         String action = tryString(sc, "[a-zA-Z]+");
 
-        while (true) {
-            switch (action) {
-                case "w":
-                    for (int i = 0; i < shipLength; i++) {
-                        arr[sideX][sideY] = "*";
-                        sideX--;
-                    }
-                    return arr;
 
-                case "s":
-                    for (int i = 0; i < shipLength; i++) {
-                        arr[sideX][sideY] = "*";
-                        sideX++;
-                    }
-                    return arr;
-
-                case "d":
-                    for (int i = 0; i < shipLength; i++) {
-                        arr[sideX][sideY] = "*";
-                        sideY--;
-                    }
-                    return arr;
-
-                case "a":
-                    for (int i = 0; i < shipLength; i++) {
-                        arr[sideX][sideY] = "*";
-                        sideY++;
-                    }
-                    return arr;
-
-                default:
-                    System.out.println("Invalid direction.");
-                    return null;
+        switch (action) {
+            case "w" -> {
+                for (int i = 0; i < shipLength; i++) {
+                    arr[sideY][sideX] = "*";
+                    sideY--;
+                }
+                return arr;
+            }
+            case "s" -> {
+                for (int i = 0; i < shipLength; i++) {
+                    arr[sideY][sideX] = "*";
+                    sideY++;
+                }
+                return arr;
+            }
+            case "d" -> {
+                for (int i = 0; i < shipLength; i++) {
+                    arr[sideY][sideX] = "*";
+                    sideX++;
+                }
+                return arr;
+            }
+            case "a" -> {
+                for (int i = 0; i < shipLength; i++) {
+                    arr[sideY][sideX] = "*";
+                    sideX--;
+                }
+                return arr;
+            }
+            default -> {
+                System.out.println("Invalid direction.");
+                return null;
             }
         }
     }
