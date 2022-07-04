@@ -1,11 +1,12 @@
 public class Main {
+    static String[][] field = new String[9][9];
 
     public static void main(String[] args) {
         run();
     }
 
     private static void run() {
-        String[][] field = new String[9][9];
+
         Player ship = new Player();
 
         for (int i = 0; i < field.length; i++) {
@@ -18,12 +19,16 @@ public class Main {
 
         for (int i = 1; i < 11; i++) {
             if (i == 1) {
+                System.out.println("Four-deck ship");
                 ship.direction(field, 4);
             } else if (i == 2 || i == 3) {
+                System.out.println("Three-deck ship");
                 ship.direction(field, 3);
             } else if (i <= 6) {
+                System.out.println("Two-deck ship");
                 ship.direction(field, 2);
             } else {
+                System.out.println("One-deck ship");
                 ship.direction(field, 1);
             }
             printField(field);

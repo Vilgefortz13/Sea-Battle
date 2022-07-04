@@ -1,5 +1,4 @@
 import java.util.InputMismatchException;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Player {
@@ -7,7 +6,7 @@ public class Player {
     private int sideY;
     private String direction;
 
-    public int createSideX() {
+    public int sideX() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Select horizontal line coordinate: ");
         String direction = tryString(sc, "[a-i]+").toLowerCase();
@@ -60,10 +59,10 @@ public class Player {
         return sideY;
     }
 
-    public String[][] direction(String[][] arr, int shipLength) {
+    public void direction(String[][] arr, int shipLength) {
         Scanner sc = new Scanner(System.in);
 
-        int sideX = createSideX();
+        int sideX = sideX();
         int sideY = createSideY();
 
         System.out.print("""
@@ -73,43 +72,72 @@ public class Player {
                   right - d;
                   left - a;
                   :  \040""");
-        String action = tryString(sc, "[a-zA-Z]+");
+        String action = tryString(sc, "[a-z]+").toLowerCase();
 
+        while (!action.equals("w") && !action.equals("s") && !action.equals("d") && !action.equals("a")) {
+            System.out.print("Invalid value! Try again: ");
+            action = tryString(sc, "[a-z]+").toLowerCase();
+        }
 
         switch (action) {
             case "w" -> {
                 for (int i = 0; i < shipLength; i++) {
-                    arr[sideY][sideX] = "*";
-                    sideY--;
+                    if (arr[sideY][sideX].equals("*")) {
+                        
+                    } else {
+                        arr[sideY][sideX] = "*";
+                        sideY--;
+                    }
                 }
-                return arr;
             }
             case "s" -> {
                 for (int i = 0; i < shipLength; i++) {
-                    arr[sideY][sideX] = "*";
-                    sideY++;
+                    if (arr[sideY][sideX].equals("*")) {
+                        whileWrongDirection();
+                    } else {
+                        arr[sideY][sideX] = "*";
+                        sideY++;
+                    }
                 }
-                return arr;
             }
             case "d" -> {
                 for (int i = 0; i < shipLength; i++) {
-                    arr[sideY][sideX] = "*";
-                    sideX++;
+                    if (arr[sideY][sideX].equals("*")) {
+                    } else {
+                        arr[sideY][sideX] = "*";
+                        sideX++;
+                    }
                 }
-                return arr;
             }
             case "a" -> {
                 for (int i = 0; i < shipLength; i++) {
-                    arr[sideY][sideX] = "*";
-                    sideX--;
+                    if (arr[sideY][sideX].equals("*")) {
+
+                    } else {
+                        arr[sideY][sideX] = "*";
+                        sideX--;
+                    }
                 }
-                return arr;
             }
             default -> {
                 System.out.println("Invalid direction.");
-                return null;
             }
         }
+
+    }
+
+    private String whileWrongDirection() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("This coordinate is busy. Try again: ");
+
+        String action = tryString(sc, "[a-z]+").toLowerCase();
+
+        while (!action.equals("w") && !action.equals("s") && !action.equals("d") && !action.equals("a")) {
+            System.out.print("Invalid value! Try again: ");
+            action = tryString(sc, "[a-z]+").toLowerCase();
+        }
+
+        return action;
     }
 
     public int getSideX() {
@@ -131,7 +159,6 @@ public class Player {
             number = new Scanner(System.in).nextInt();
         } catch (InputMismatchException e) {
             System.out.print("Invalid value. Try again: ");
-            getNum();
         }
         return number;
     }
