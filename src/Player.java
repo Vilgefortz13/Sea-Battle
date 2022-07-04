@@ -64,6 +64,11 @@ public class Player {
 
         int sideX = sideX();
         int sideY = createSideY();
+        while (arr[sideY][sideX].equals("*")) {
+            System.out.println("This coordinate is busy. Please choose an another place!");
+            sideX = sideX();
+            sideY = createSideY();
+        }
 
         System.out.print("""
                 Enter the direction of the ship
@@ -82,41 +87,26 @@ public class Player {
         switch (action) {
             case "w" -> {
                 for (int i = 0; i < shipLength; i++) {
-                    if (arr[sideY][sideX].equals("*")) {
-                        
-                    } else {
-                        arr[sideY][sideX] = "*";
-                        sideY--;
-                    }
+                    arr[sideY][sideX] = "*";
+                    sideY--;
                 }
             }
             case "s" -> {
                 for (int i = 0; i < shipLength; i++) {
-                    if (arr[sideY][sideX].equals("*")) {
-                        whileWrongDirection();
-                    } else {
-                        arr[sideY][sideX] = "*";
-                        sideY++;
-                    }
+                    arr[sideY][sideX] = "*";
+                    sideY++;
                 }
             }
             case "d" -> {
                 for (int i = 0; i < shipLength; i++) {
-                    if (arr[sideY][sideX].equals("*")) {
-                    } else {
-                        arr[sideY][sideX] = "*";
-                        sideX++;
-                    }
+                    arr[sideY][sideX] = "*";
+                    sideX++;
                 }
             }
             case "a" -> {
                 for (int i = 0; i < shipLength; i++) {
-                    if (arr[sideY][sideX].equals("*")) {
-
-                    } else {
-                        arr[sideY][sideX] = "*";
-                        sideX--;
-                    }
+                    arr[sideY][sideX] = "*";
+                    sideX--;
                 }
             }
             default -> {
@@ -126,10 +116,8 @@ public class Player {
 
     }
 
-    private String whileWrongDirection() {
+    private String whilePlaceIsBusy() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("This coordinate is busy. Try again: ");
-
         String action = tryString(sc, "[a-z]+").toLowerCase();
 
         while (!action.equals("w") && !action.equals("s") && !action.equals("d") && !action.equals("a")) {

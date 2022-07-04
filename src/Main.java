@@ -19,16 +19,16 @@ public class Main {
 
         for (int i = 1; i < 11; i++) {
             if (i == 1) {
-                System.out.println("Four-deck ship");
+                System.out.println("- Four-deck ship -");
                 ship.direction(field, 4);
             } else if (i == 2 || i == 3) {
-                System.out.println("Three-deck ship");
+                System.out.println("- Three-deck ship -");
                 ship.direction(field, 3);
             } else if (i <= 6) {
-                System.out.println("Two-deck ship");
+                System.out.println("- Two-deck ship -");
                 ship.direction(field, 2);
             } else {
-                System.out.println("One-deck ship");
+                System.out.println("- One-deck ship -");
                 ship.direction(field, 1);
             }
             printField(field);
@@ -48,8 +48,6 @@ public class Main {
             System.out.println();
         }
         System.out.println();
-
-        verticalCoordinates = 1;
     }
 
 }
